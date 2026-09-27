@@ -1,0 +1,78 @@
+/* Architect 2.0 — drafting-table design tokens.
+   Paper + ink by default. "Redline" is the one loud colour: it marks anything the AI
+   guessed, anything that needs the user, and the primary action. Dark theme is the
+   blueprint: same drawing, printed on blue. */
+
+:root {
+  --paper: #f3f0e8;
+  --paper-2: #ebe7dc;
+  --sheet: #fbfaf6;
+  --sheet-2: #f6f4ee;
+  --ink: #16150f;
+  --ink-2: #47453d;
+  --ink-3: #7d7a70;
+  --ink-4: #a9a597;
+  --rule: #d8d3c5;
+  --rule-strong: #bfb9a8;
+  --grid: rgba(22, 21, 15, 0.045);
+  --grid-major: rgba(22, 21, 15, 0.075);
+
+  --red: #e0482a;          /* fills, stamps, redline strokes */
+  --red-text: #b5341b;     /* red as type on paper */
+  --red-wash: rgba(224, 72, 42, 0.09);
+  --blue: #2350c8;         /* "real / connected / working" */
+  --blue-text: #1d43a8;
+  --blue-wash: rgba(35, 80, 200, 0.08);
+  --green: #2f7a4b;
+  --green-wash: rgba(47, 122, 75, 0.1);
+  --amber: #a86a12;
+  --amber-wash: rgba(200, 132, 24, 0.12);
+
+  --on-ink: #f3f0e8;
+  --shadow-hard: 3px 3px 0 var(--ink);
+  --shadow-soft: 0 1px 0 rgba(22, 21, 15, 0.04), 0 8px 24px -12px rgba(22, 21, 15, 0.22);
+
+  --font-display: 'Archivo', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-hand: 'Architects Daughter', 'Comic Sans MS', cursive;
+
+  --r-sm: 3px;
+  --r-md: 6px;
+  --r-lg: 10px;
+
+  --topbar-h: 52px;
+  color-scheme: light;
+}
+
+/* Blueprint (dark) */
+:root[data-theme='dark'] {
+  --paper: #0c1829;
+  --paper-2: #0f1e33;
+  --sheet: #13243b;
+  --sheet-2: #172b45;
+  --ink: #e7edf5;
+  --ink-2: #b9c5d6;
+  --ink-3: #8193ab;
+  --ink-4: #5b6d87;
+  --rule: #25395a;
+  --rule-strong: #34507a;
+  --grid: rgba(150, 185, 230, 0.05);
+  --grid-major: rgba(150, 185, 230, 0.09);
+
+  --red: #ff6a4d;
+  --red-text: #ff8a70;
+  --red-wash: rgba(255, 106, 77, 0.12);
+  --blue: #7fa6ff;
+  --blue-text: #9dbbff;
+  --blue-wash: rgba(127, 166, 255, 0.12);
+  --green: #5fc48a;
+  --green-wash: rgba(95, 196, 138, 0.12);
+  --amber: #f0b454;
+  --amber-wash: rgba(240, 180, 84, 0.13);
+
+  --on-ink: #0c1829;
+  --shadow-hard: 3px 3px 0 #000;
+  --shadow-soft: 0 10px 30px -14px rgba(0, 0, 0, 0.6);
+  color-scheme: dark;
+}
