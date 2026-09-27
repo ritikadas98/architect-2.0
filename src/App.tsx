@@ -1,19 +1,19 @@
-import { HashRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom'
-import { useEffect } from 'react'
+import { HashRouter, Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
+import { Suspense, lazy, useEffect } from 'react'
 import { StoreProvider, useStore } from './lib/store'
 import { Toasts } from './components/ui'
-import Landing from './pages/Landing'
-import Login from './pages/Login'
-import Welcome from './pages/Welcome'
-import Home from './pages/Home'
-import ImportProject from './pages/ImportProject'
-import Brief from './pages/Brief'
-import Blueprint from './pages/Blueprint'
-import Workspace from './pages/workspace/Workspace'
-import Launch from './pages/Launch'
-import Skills from './pages/Skills'
-import Settings from './pages/Settings'
-import Architecture from './pages/Architecture'
+const Landing = lazy(() => import('./pages/Landing'))
+const Login = lazy(() => import('./pages/Login'))
+const Welcome = lazy(() => import('./pages/Welcome'))
+const Home = lazy(() => import('./pages/Home'))
+const ImportProject = lazy(() => import('./pages/ImportProject'))
+const Brief = lazy(() => import('./pages/Brief'))
+const Blueprint = lazy(() => import('./pages/Blueprint'))
+const Workspace = lazy(() => import('./pages/workspace/Workspace'))
+const Launch = lazy(() => import('./pages/Launch'))
+const Skills = lazy(() => import('./pages/Skills'))
+const Settings = lazy(() => import('./pages/Settings'))
+const Architecture = lazy(() => import('./pages/Architecture'))
 
 function RequireUser({ children }: { children: React.ReactNode }) {
   const { user } = useStore()
@@ -22,9 +22,30 @@ function RequireUser({ children }: { children: React.ReactNode }) {
   return <>{children}</>
 }
 
+/** After a real OAuth round-trip we land on the app root; send the user where they were heading. */
+function AfterLogin() {
+  const { user } = useStore()
+  const nav = useNavigate()
+  useEffect(() => {
+    if (!user?.real) return
+    try {
+      const to = sessionStorage.getItem('a2:after-login')
+      if (to) {
+        sessionStorage.removeItem('a2:after-login')
+        nav(to, { replace: true })
+      }
+    } catch {
+      /* ignore */
+    }
+  }, [user?.real]) // eslint-disable-line react-hooks/exhaustive-deps
+  return null
+}
+
 function ScrollTop() {
   const { pathname } = useLocation()
-  useEffect(() => window.scrollTo(0, 0), [pathname])
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
   return null
 }
 
@@ -33,6 +54,8 @@ export default function App() {
     <StoreProvider>
       <HashRouter>
         <ScrollTop />
+        <AfterLogin />
+        <Suspense fallback={<div className="grid-bg" style={{ minHeight: '100%' }} />}>
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
@@ -49,6 +72,7 @@ export default function App() {
           <Route path="/p/:id" element={<RequireUser><Workspace /></RequireUser>} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
+        </Suspense>
         <Toasts />
       </HashRouter>
     </StoreProvider>

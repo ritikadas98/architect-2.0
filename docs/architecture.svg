@@ -1,0 +1,419 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1200" viewBox="0 0 1800 1200">
+<title>Architect 2.0 system architecture</title>
+<defs>
+<marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#E0482A"/></marker>
+<marker id="sr" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M10 0 L0 5 L10 10 z" fill="#E0482A"/></marker>
+<marker id="ak" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#16150F"/></marker>
+<marker id="sk" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M10 0 L0 5 L10 10 z" fill="#16150F"/></marker>
+<marker id="ab" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#2350C8"/></marker>
+<marker id="sb" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M10 0 L0 5 L10 10 z" fill="#2350C8"/></marker>
+<pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0 L0 0 0 40" fill="none" stroke="rgba(22,21,15,0.06)" stroke-width="1"/></pattern>
+</defs>
+<rect width="1800" height="1200" fill="#F3F0E8"/>
+<rect width="1800" height="1200" fill="url(#grid)"/>
+<rect x="12" y="12" width="1776" height="1176" fill="none" stroke="#16150F" stroke-width="2"/>
+<text x="30" y="50" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="22" font-weight="800" fill="#16150F" text-anchor="start" letter-spacing="0.02em">ARCHITECT 2.0 — SYSTEM ARCHITECTURE</text>
+<text x="30" y="70" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#7D7A70" text-anchor="start">Prompt → live app. Red = critical path, numbered as in ARCHITECTURE.md.</text>
+<rect x="30" y="100" width="250" height="520" fill="none" stroke="#16150F" stroke-width="1" stroke-dasharray="6 4"/>
+<rect x="30" y="91" width="94.1" height="18" fill="#16150F"/>
+<text x="38" y="104" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10.5" font-weight="700" fill="#F3F0E8" text-anchor="start">01  CLIENTS</text>
+<rect x="310" y="100" width="250" height="520" fill="none" stroke="#16150F" stroke-width="1" stroke-dasharray="6 4"/>
+<rect x="310" y="91" width="72.8" height="18" fill="#16150F"/>
+<text x="318" y="104" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10.5" font-weight="700" fill="#F3F0E8" text-anchor="start">02  EDGE</text>
+<rect x="590" y="100" width="620" height="590" fill="none" stroke="#16150F" stroke-width="1" stroke-dasharray="6 4"/>
+<rect x="590" y="91" width="136.7" height="18" fill="#16150F"/>
+<text x="598" y="104" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10.5" font-weight="700" fill="#F3F0E8" text-anchor="start">03  CONTROL PLANE</text>
+<text x="1202" y="122" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#7D7A70" text-anchor="end">multi-region · stateless</text>
+<rect x="1240" y="100" width="530" height="460" fill="none" stroke="#16150F" stroke-width="1" stroke-dasharray="6 4"/>
+<rect x="1240" y="91" width="150.9" height="18" fill="#16150F"/>
+<text x="1248" y="104" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10.5" font-weight="700" fill="#F3F0E8" text-anchor="start">04  DATA PLANE CELL</text>
+<text x="1762" y="122" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#7D7A70" text-anchor="end">asia-south1 · us-east1</text>
+<rect x="1240" y="590" width="530" height="240" fill="none" stroke="#16150F" stroke-width="1" stroke-dasharray="6 4"/>
+<rect x="1240" y="581" width="136.7" height="18" fill="#16150F"/>
+<text x="1248" y="594" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10.5" font-weight="700" fill="#F3F0E8" text-anchor="start">05  MODEL GATEWAY</text>
+<rect x="30" y="650" width="530" height="280" fill="none" stroke="#16150F" stroke-width="1" stroke-dasharray="6 4"/>
+<rect x="30" y="641" width="158.0" height="18" fill="#16150F"/>
+<text x="38" y="654" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10.5" font-weight="700" fill="#F3F0E8" text-anchor="start">06  USER APP HOSTING</text>
+<rect x="590" y="710" width="620" height="220" fill="none" stroke="#16150F" stroke-width="1" stroke-dasharray="6 4"/>
+<rect x="590" y="701" width="72.8" height="18" fill="#16150F"/>
+<text x="598" y="714" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10.5" font-weight="700" fill="#F3F0E8" text-anchor="start">07  DATA</text>
+<rect x="50" y="140" width="210" height="240" fill="#FBFAF6" stroke="#16150F" stroke-width="1.4"/>
+<text x="60" y="159" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="700" fill="#16150F" text-anchor="start">Web app</text>
+<text x="60" y="174" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#7D7A70" text-anchor="start">builder UI · React</text>
+<rect x="60" y="180" width="90" height="22" rx="2" fill="#F3F0E8" stroke="#16150F" stroke-width="1"/>
+<text x="105.0" y="195" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#16150F" text-anchor="middle">SIMPLE</text>
+<rect x="158" y="180" width="92" height="22" rx="2" fill="#F3F0E8" stroke="#16150F" stroke-width="1"/>
+<text x="204.0" y="195" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#16150F" text-anchor="middle">DEVELOPER</text>
+<text x="60" y="224" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#7D7A70" text-anchor="start">one project, two views,</text>
+<text x="60" y="238" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#7D7A70" text-anchor="start">one event log</text>
+<text x="60" y="252" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start"></text>
+<text x="60" y="266" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">click-to-edit overlay</text>
+<text x="60" y="280" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">in the preview iframe</text>
+<text x="60" y="294" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start"></text>
+<text x="60" y="308" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">EventSource (SSE)</text>
+<text x="60" y="322" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">WebSocket (terminal)</text>
+<rect x="50" y="410" width="210" height="80" fill="#FBFAF6" stroke="#16150F" stroke-width="1.4"/>
+<text x="60" y="429" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="700" fill="#16150F" text-anchor="start">CLI / MCP server</text>
+<text x="60" y="444" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#7D7A70" text-anchor="start">architect link</text>
+<text x="60" y="458" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">Claude Code · Cursor</text>
+<text x="60" y="472" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">OAuth device flow</text>
+<rect x="50" y="520" width="210" height="80" fill="#FBFAF6" stroke="#16150F" stroke-width="1.4"/>
+<text x="60" y="539" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="700" fill="#16150F" text-anchor="start">GitHub</text>
+<text x="60" y="554" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#7D7A70" text-anchor="start">external</text>
+<text x="60" y="568" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">user repos</text>
+<text x="60" y="582" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">push / PR webhooks</text>
+<rect x="330" y="140" width="210" height="50" fill="#FBFAF6" stroke="#16150F" stroke-width="1.4"/>
+<text x="340" y="159" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#16150F" text-anchor="start">CDN / WAF</text>
+<text x="340" y="174" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#7D7A70" text-anchor="start">Cloudflare · static web app</text>
+<rect x="330" y="210" width="210" height="80" fill="#FBFAF6" stroke="#16150F" stroke-width="1.4"/>
+<text x="340" y="229" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="700" fill="#16150F" text-anchor="start">Preview proxy</text>
+<text x="340" y="244" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#E0482A" text-anchor="start">*.archpreview.app</text>
+<text x="340" y="258" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">host → route (Redis)</text>
+<text x="340" y="272" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">→ cell tunnel · wake</text>
+<rect x="330" y="310" width="210" height="90" fill="#FBFAF6" stroke="#16150F" stroke-width="1.4"/>
+<text x="340" y="329" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="700" fill="#16150F" text-anchor="start">API gateway</text>
+<text x="340" y="344" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#7D7A70" text-anchor="start">api.architect.new</text>
+<text x="340" y="358" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">authN · rate limits</text>
+<text x="340" y="372" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">SSE fan-out</text>
+<text x="340" y="386" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">admission control</text>
+<rect x="610" y="140" width="180" height="80" fill="#FBFAF6" stroke="#16150F" stroke-width="1.4"/>
+<text x="620" y="159" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="700" fill="#16150F" text-anchor="start">Auth &amp; tenancy</text>
+<text x="620" y="173" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">orgs · roles</text>
+<text x="620" y="187" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">OIDC · SSO</text>
+<rect x="810" y="140" width="180" height="80" fill="#FBFAF6" stroke="#16150F" stroke-width="1.4"/>
+<text x="820" y="159" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="700" fill="#16150F" text-anchor="start">Project service</text>
+<text x="820" y="173" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">projects · turns</text>
+<text x="820" y="187" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">design.md · skills</text>
+<rect x="1010" y="140" width="180" height="80" fill="#FBFAF6" stroke="#16150F" stroke-width="1.4"/>
+<text x="1020" y="159" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="700" fill="#16150F" text-anchor="start">Billing &amp; metering</text>
+<text x="1020" y="173" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">estimate · ledger</text>
+<text x="1020" y="187" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">cause: user | agent</text>
+<rect x="610" y="240" width="580" height="110" fill="#FBFAF6" stroke="#16150F" stroke-width="1.4"/>
+<text x="620" y="259" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="700" fill="#16150F" text-anchor="start">Build orchestrator · Temporal</text>
+<text x="620" y="274" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#7D7A70" text-anchor="start">durable state machine for a build</text>
+<text x="620" y="288" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">BuildSession workflow per turn · child workflow per sub-agent</text>
+<text x="620" y="302" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">signals: approve · answer · cancel · user_edit   ·   durable retries</text>
+<text x="620" y="316" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">task queue per cell  ·  writes every step to the event log</text>
+<rect x="610" y="370" width="180" height="85" fill="#FBFAF6" stroke="#16150F" stroke-width="1.4"/>
+<text x="620" y="389" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="700" fill="#16150F" text-anchor="start">Inspection service</text>
+<text x="620" y="403" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">Semgrep · LLM review</text>
+<text x="620" y="417" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">runtime probes</text>
+<rect x="610" y="475" width="180" height="85" fill="#FBFAF6" stroke="#16150F" stroke-width="1.4"/>
+<text x="620" y="494" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="700" fill="#16150F" text-anchor="start">GitHub App service</text>
+<text x="620" y="508" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">installation tokens</text>
+<text x="620" y="522" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">sync · PR · conflicts</text>
+<rect x="810" y="370" width="380" height="190" fill="#FBFAF6" stroke="#16150F" stroke-width="1.4"/>
+<text x="820" y="389" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="700" fill="#16150F" text-anchor="start">Agent harness</text>
+<text x="820" y="404" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#7D7A70" text-anchor="start">runs OUTSIDE the sandbox · AI SDK loop</text>
+<rect x="822" y="412" width="82" height="22" rx="2" fill="#F3F0E8" stroke="#16150F" stroke-width="1"/>
+<text x="863.0" y="427" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#16150F" text-anchor="middle">PLANNER</text>
+<rect x="912" y="412" width="82" height="22" rx="2" fill="#F3F0E8" stroke="#16150F" stroke-width="1"/>
+<text x="953.0" y="427" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#16150F" text-anchor="middle">CODER</text>
+<rect x="1002" y="412" width="82" height="22" rx="2" fill="#F3F0E8" stroke="#16150F" stroke-width="1"/>
+<text x="1043.0" y="427" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#16150F" text-anchor="middle">TESTER</text>
+<rect x="1092" y="412" width="88" height="22" rx="2" fill="#F3F0E8" stroke="#16150F" stroke-width="1"/>
+<text x="1136.0" y="427" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#16150F" text-anchor="middle">INSPECTOR</text>
+<text x="822" y="456" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">tools: read · search_replace · write · shell</text>
+<text x="822" y="470" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">       grep · screenshot · console_logs</text>
+<text x="822" y="488" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">context: repo map · design.md · SKILL.md</text>
+<text x="822" y="506" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">self-heal: deterministic fix → small model</text>
+<text x="822" y="520" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">           → main model (3 tries / error)</text>
+<text x="822" y="540" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#7D7A70" text-anchor="start">every step: model, tokens, cause, cost</text>
+<rect x="610" y="580" width="180" height="90" fill="#FBFAF6" stroke="#16150F" stroke-width="1.4"/>
+<text x="620" y="599" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="700" fill="#16150F" text-anchor="start">Deploy service</text>
+<text x="620" y="613" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">immutable builds</text>
+<text x="620" y="627" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">promote · rollback</text>
+<text x="620" y="641" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">domains · secrets</text>
+<rect x="810" y="580" width="180" height="90" fill="#FBFAF6" stroke="#16150F" stroke-width="1.4"/>
+<text x="820" y="599" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="700" fill="#16150F" text-anchor="start">Skills &amp; MCP registry</text>
+<text x="820" y="613" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">SKILL.md bundles</text>
+<text x="820" y="627" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">embedding match</text>
+<text x="820" y="641" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">trust review</text>
+<rect x="1010" y="580" width="180" height="90" fill="#FBFAF6" stroke="#16150F" stroke-width="1.4"/>
+<text x="1020" y="599" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="700" fill="#16150F" text-anchor="start">Observability</text>
+<text x="1020" y="613" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">OTel GenAI spans</text>
+<text x="1020" y="627" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">Langfuse · SLOs</text>
+<text x="1020" y="641" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">cost per session</text>
+<path d="M900 580 L900 562" fill="none" stroke="#16150F" stroke-width="1.2" marker-end="url(#ak)"/>
+<rect x="903" y="566.5" width="47.48" height="12.5" fill="#F3F0E8"/>
+<text x="906" y="575" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="8.5" font-weight="400" fill="#47453D" text-anchor="start">SKILL.md</text>
+<path d="M1100 562 L1100 580" fill="none" stroke="#16150F" stroke-width="1.2" marker-end="url(#ak)"/>
+<rect x="1103" y="566.5" width="31.925" height="12.5" fill="#F3F0E8"/>
+<text x="1106" y="575" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="8.5" font-weight="400" fill="#47453D" text-anchor="start">spans</text>
+<path d="M1100 350 L1100 368" fill="none" stroke="#16150F" stroke-width="1.2" marker-end="url(#ak)"/>
+<rect x="1103" y="354.5" width="57.85" height="12.5" fill="#F3F0E8"/>
+<text x="1106" y="363" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="8.5" font-weight="400" fill="#47453D" text-anchor="start">activities</text>
+<path d="M1100 222 L1100 240" fill="none" stroke="#16150F" stroke-width="1.2" marker-start="url(#sk)"/>
+<rect x="1103" y="226.5" width="31.925" height="12.5" fill="#F3F0E8"/>
+<text x="1106" y="235" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="8.5" font-weight="400" fill="#47453D" text-anchor="start">meter</text>
+<rect x="1260" y="140" width="330" height="400" fill="none" stroke="#16150F" stroke-width="1.2"/>
+<text x="1270" y="159" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="700" fill="#16150F" text-anchor="start">Sandbox fleet</text>
+<text x="1270" y="174" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#7D7A70" text-anchor="start">SandboxProvider: E2B/Modal → GKE+gVisor</text>
+<rect x="1280" y="195" width="290" height="260" fill="#FBFAF6" stroke="#16150F" stroke-width="1.4"/>
+<text x="1290" y="214" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#16150F" text-anchor="start">Sandbox · microVM, one per project</text>
+<rect x="1295" y="225" width="125" height="52" fill="#F3F0E8" stroke="#16150F" stroke-width="1"/>
+<text x="1305" y="244" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="700" fill="#16150F" text-anchor="start">Agent sidecar</text>
+<text x="1305" y="258" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">:8080 /invoke</text>
+<rect x="1430" y="225" width="125" height="52" fill="#F3F0E8" stroke="#16150F" stroke-width="1"/>
+<text x="1440" y="244" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="700" fill="#16150F" text-anchor="start">Dev server</text>
+<text x="1440" y="258" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">:3000 · HMR</text>
+<rect x="1295" y="287" width="260" height="30" fill="#F3F0E8" stroke="#16150F" stroke-width="1"/>
+<text x="1305" y="306" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">/workspace · git · design.md · .env*</text>
+<text x="1295" y="336" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#7D7A70" text-anchor="start">warm → running → paused → hibernated</text>
+<text x="1295" y="350" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#2350C8" text-anchor="start">snapshots → object storage</text>
+<rect x="1295" y="372" width="260" height="70" fill="#F3F0E8" stroke="#16150F" stroke-width="1"/>
+<text x="1305" y="391" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="700" fill="#16150F" text-anchor="start">In-sandbox daemon</text>
+<text x="1305" y="405" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">fs · exec · logs · screenshots</text>
+<text x="1305" y="419" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">mTLS tunnel to harness</text>
+<rect x="1280" y="470" width="290" height="58" fill="none" stroke="#16150F" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="1290" y="488" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="700" fill="#16150F" text-anchor="start">Warm pool</text>
+<text x="1290" y="502" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#7D7A70" text-anchor="start">pre-booted per template</text>
+<text x="1290" y="516" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#7D7A70" text-anchor="start">claim = seconds, not minutes</text>
+<rect x="1470" y="484" width="11" height="11" fill="#F3F0E8" stroke="#16150F" stroke-width="1"/>
+<rect x="1485" y="484" width="11" height="11" fill="#F3F0E8" stroke="#16150F" stroke-width="1"/>
+<rect x="1500" y="484" width="11" height="11" fill="#F3F0E8" stroke="#16150F" stroke-width="1"/>
+<rect x="1515" y="484" width="11" height="11" fill="#F3F0E8" stroke="#16150F" stroke-width="1"/>
+<rect x="1530" y="484" width="11" height="11" fill="#F3F0E8" stroke="#16150F" stroke-width="1"/>
+<rect x="1545" y="484" width="11" height="11" fill="#F3F0E8" stroke="#16150F" stroke-width="1"/>
+<rect x="1470" y="500" width="11" height="11" fill="#F3F0E8" stroke="#16150F" stroke-width="1"/>
+<rect x="1485" y="500" width="11" height="11" fill="#F3F0E8" stroke="#16150F" stroke-width="1"/>
+<rect x="1500" y="500" width="11" height="11" fill="#F3F0E8" stroke="#16150F" stroke-width="1"/>
+<rect x="1515" y="500" width="11" height="11" fill="#F3F0E8" stroke="#16150F" stroke-width="1"/>
+<rect x="1530" y="500" width="11" height="11" fill="#F3F0E8" stroke="#16150F" stroke-width="1"/>
+<rect x="1545" y="500" width="11" height="11" fill="#F3F0E8" stroke="#16150F" stroke-width="1"/>
+<path d="M1425 470 L1425 457" fill="none" stroke="#16150F" stroke-width="1.1" marker-end="url(#ak)"/>
+<rect x="1620" y="140" width="135" height="110" fill="#FBFAF6" stroke="#16150F" stroke-width="1.4"/>
+<text x="1630" y="159" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#16150F" text-anchor="start">Secrets vault</text>
+<text x="1630" y="173" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">real keys live</text>
+<text x="1630" y="187" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">here only</text>
+<text x="1630" y="201" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">(Shopify, Stripe)</text>
+<rect x="1620" y="290" width="135" height="130" fill="#FBFAF6" stroke="#16150F" stroke-width="1.4"/>
+<text x="1630" y="309" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#16150F" text-anchor="start">Egress proxy</text>
+<text x="1630" y="323" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">allowlist hosts</text>
+<text x="1630" y="337" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">placeholder →</text>
+<text x="1630" y="351" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">real secret</text>
+<text x="1630" y="365" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">npm/pip mirror</text>
+<path d="M1687 250 L1687 288" fill="none" stroke="#16150F" stroke-width="1.2" marker-end="url(#ak)"/>
+<rect x="1689" y="265.5" width="37.11" height="12.5" fill="#F3F0E8"/>
+<text x="1692" y="274" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="8.5" font-weight="400" fill="#47453D" text-anchor="start">inject</text>
+<rect x="1620" y="450" width="135" height="78" fill="none" stroke="#16150F" stroke-width="1.4" stroke-dasharray="4 3"/>
+<text x="1630" y="469" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#16150F" text-anchor="start">Internet</text>
+<text x="1630" y="483" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">npm · PyPI</text>
+<text x="1630" y="497" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">Shopify · APIs</text>
+<path d="M1687 420 L1687 448" fill="none" stroke="#16150F" stroke-width="1.2" marker-end="url(#ak)"/>
+<rect x="1260" y="630" width="210" height="180" fill="#FBFAF6" stroke="#16150F" stroke-width="1.4"/>
+<text x="1270" y="649" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="700" fill="#16150F" text-anchor="start">LiteLLM proxy</text>
+<text x="1270" y="664" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#7D7A70" text-anchor="start">one OpenAI-style API</text>
+<text x="1270" y="678" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">virtual keys · budgets</text>
+<text x="1270" y="692" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">routing by task</text>
+<text x="1270" y="706" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">fallback chains</text>
+<text x="1270" y="720" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">prompt caching</text>
+<text x="1270" y="734" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">BYOK keys</text>
+<text x="1270" y="748" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">spend logs</text>
+<rect x="1545" y="632" width="205" height="34" fill="#FBFAF6" stroke="#16150F" stroke-width="1.2"/>
+<text x="1557" y="654" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#16150F" text-anchor="start">Anthropic</text>
+<path d="M1470 720 L1508 720 L1508 649 L1543 649" fill="none" stroke="#16150F" stroke-width="1.1" marker-end="url(#ak)"/>
+<rect x="1545" y="677" width="205" height="34" fill="#FBFAF6" stroke="#16150F" stroke-width="1.2"/>
+<text x="1557" y="699" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#16150F" text-anchor="start">OpenAI</text>
+<path d="M1470 720 L1508 720 L1508 694 L1543 694" fill="none" stroke="#16150F" stroke-width="1.1" marker-end="url(#ak)"/>
+<rect x="1545" y="722" width="205" height="34" fill="#FBFAF6" stroke="#16150F" stroke-width="1.2"/>
+<text x="1557" y="744" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#16150F" text-anchor="start">Google</text>
+<path d="M1470 720 L1508 720 L1508 739 L1543 739" fill="none" stroke="#16150F" stroke-width="1.1" marker-end="url(#ak)"/>
+<rect x="1545" y="767" width="205" height="34" fill="#FBFAF6" stroke="#16150F" stroke-width="1.2"/>
+<text x="1557" y="789" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#16150F" text-anchor="start">Open-source · vLLM</text>
+<path d="M1470 720 L1508 720 L1508 784 L1543 784" fill="none" stroke="#16150F" stroke-width="1.1" marker-end="url(#ak)"/>
+<rect x="1240" y="850" width="530" height="80" fill="none" stroke="#7D7A70" stroke-width="1" stroke-dasharray="3 4"/>
+<text x="1255" y="874" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#7D7A70" text-anchor="start">Cell N+1 …</text>
+<text x="1255" y="892" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#7D7A70" text-anchor="start">Same stack per cell: sandbox fleet, egress proxy, preview</text>
+<text x="1255" y="906" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#7D7A70" text-anchor="start">tunnel, Redis. Each project has a home cell. Add capacity</text>
+<text x="1255" y="920" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#7D7A70" text-anchor="start">by adding cells. One cell failing takes out only its share.</text>
+<rect x="50" y="690" width="180" height="60" fill="#FBFAF6" stroke="#16150F" stroke-width="1.4"/>
+<text x="60" y="709" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="700" fill="#16150F" text-anchor="start">End users</text>
+<text x="60" y="723" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">browser · phone</text>
+<rect x="50" y="800" width="180" height="110" fill="#FBFAF6" stroke="#16150F" stroke-width="1.4"/>
+<text x="60" y="819" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="700" fill="#16150F" text-anchor="start">Custom domains</text>
+<text x="60" y="833" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">Cloudflare for SaaS</text>
+<text x="60" y="847" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">auto TLS</text>
+<text x="60" y="861" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">glow-support.</text>
+<text x="60" y="875" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">  architect.app</text>
+<rect x="300" y="690" width="240" height="75" fill="#FBFAF6" stroke="#16150F" stroke-width="1.4"/>
+<text x="310" y="709" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="700" fill="#16150F" text-anchor="start">Edge frontend</text>
+<text x="310" y="723" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">Workers for Platforms</text>
+<text x="310" y="737" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">or Vercel · immutable</text>
+<rect x="300" y="790" width="240" height="120" fill="#FBFAF6" stroke="#16150F" stroke-width="1.4"/>
+<text x="310" y="809" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="700" fill="#16150F" text-anchor="start">Agent containers</text>
+<text x="310" y="823" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">Cloud Run / Fly · OCI image</text>
+<text x="310" y="837" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">/invoke /stream /health</text>
+<text x="310" y="851" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">Lyzr ADK · LangGraph</text>
+<text x="310" y="865" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">CrewAI · OpenAI Agents SDK</text>
+<text x="310" y="879" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">egress via proxy sidecar</text>
+<path d="M265 845 L265 728 L298 728" fill="none" stroke="#16150F" stroke-width="1.2" marker-end="url(#ak)"/>
+<path d="M232 845 L265 845" fill="none" stroke="#16150F" stroke-width="1.2"/>
+<path d="M420 765 L420 788" fill="none" stroke="#16150F" stroke-width="1.2" marker-end="url(#ak)"/>
+<rect x="423" y="772.5" width="42.295" height="12.5" fill="#F3F0E8"/>
+<text x="426" y="781" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="8.5" font-weight="400" fill="#47453D" text-anchor="start">/invoke</text>
+<rect x="610" y="750" width="106" height="120" fill="#FBFAF6" stroke="#2350C8" stroke-width="1.6"/>
+<path d="M610 760 Q663.0 770 716 760" fill="none" stroke="#2350C8" stroke-width="1"/>
+<text x="618" y="786" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#2350C8" text-anchor="start">Postgres</text>
+<text x="618" y="799.5" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#47453D" text-anchor="start">projects, users,</text>
+<text x="618" y="813.0" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#47453D" text-anchor="start">orgs, skills,</text>
+<text x="618" y="826.5" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#47453D" text-anchor="start">deploys, revs</text>
+<text x="618" y="840.0" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#47453D" text-anchor="start">RLS per tenant</text>
+<path d="M663 728 L663 748" fill="none" stroke="#2350C8" stroke-width="1.3" marker-end="url(#ab)"/>
+<rect x="728" y="750" width="106" height="120" fill="#FBFAF6" stroke="#2350C8" stroke-width="1.6"/>
+<path d="M728 760 Q781.0 770 834 760" fill="none" stroke="#2350C8" stroke-width="1"/>
+<text x="736" y="786" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#2350C8" text-anchor="start">Redis Streams</text>
+<text x="736" y="799.5" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#47453D" text-anchor="start">event log (SSE),</text>
+<text x="736" y="813.0" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#47453D" text-anchor="start">preview routes,</text>
+<text x="736" y="826.5" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#47453D" text-anchor="start">locks, queues</text>
+<path d="M781 728 L781 748" fill="none" stroke="#2350C8" stroke-width="1.3" marker-end="url(#ab)"/>
+<rect x="846" y="750" width="106" height="120" fill="#FBFAF6" stroke="#2350C8" stroke-width="1.6"/>
+<path d="M846 760 Q899.0 770 952 760" fill="none" stroke="#2350C8" stroke-width="1"/>
+<text x="854" y="786" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#2350C8" text-anchor="start">Object store</text>
+<text x="854" y="799.5" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#47453D" text-anchor="start">sandbox snapshots</text>
+<text x="854" y="813.0" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#47453D" text-anchor="start">build artifacts</text>
+<text x="854" y="826.5" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#47453D" text-anchor="start">uploads (S3/R2)</text>
+<path d="M899 728 L899 748" fill="none" stroke="#2350C8" stroke-width="1.3" marker-end="url(#ab)"/>
+<rect x="964" y="750" width="106" height="120" fill="#FBFAF6" stroke="#2350C8" stroke-width="1.6"/>
+<path d="M964 760 Q1017.0 770 1070 760" fill="none" stroke="#2350C8" stroke-width="1"/>
+<text x="972" y="786" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#2350C8" text-anchor="start">Vector store</text>
+<text x="972" y="799.5" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#47453D" text-anchor="start">pgvector:</text>
+<text x="972" y="813.0" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#47453D" text-anchor="start">skill embeddings</text>
+<text x="972" y="826.5" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#47453D" text-anchor="start">repo chunks</text>
+<path d="M1017 728 L1017 748" fill="none" stroke="#2350C8" stroke-width="1.3" marker-end="url(#ab)"/>
+<rect x="1082" y="750" width="106" height="120" fill="#FBFAF6" stroke="#2350C8" stroke-width="1.6"/>
+<path d="M1082 760 Q1135.0 770 1188 760" fill="none" stroke="#2350C8" stroke-width="1"/>
+<text x="1090" y="786" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#2350C8" text-anchor="start">ClickHouse</text>
+<text x="1090" y="799.5" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#47453D" text-anchor="start">events, traces,</text>
+<text x="1090" y="813.0" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#47453D" text-anchor="start">metering ledger,</text>
+<text x="1090" y="826.5" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#47453D" text-anchor="start">cost analytics</text>
+<path d="M1135 728 L1135 748" fill="none" stroke="#2350C8" stroke-width="1.3" marker-end="url(#ab)"/>
+<path d="M663 728 L1135 728" stroke="#2350C8" stroke-width="1.3" fill="none"/>
+<path d="M900 690 L900 728" fill="none" stroke="#2350C8" stroke-width="1.3"/>
+<rect x="903" y="713.5" width="135.625" height="12.5" fill="#F3F0E8"/>
+<text x="906" y="722" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="8.5" font-weight="400" fill="#2350C8" text-anchor="start">all services read / write</text>
+<path d="M260 330 L328 330" fill="none" stroke="#E0482A" stroke-width="2.2" marker-end="url(#ar)"/>
+<circle cx="294" cy="330" r="9.5" fill="#E0482A" stroke="#F3F0E8" stroke-width="2"/>
+<text x="294" y="334" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="11" font-weight="800" fill="#FFFFFF" text-anchor="middle">1</text>
+<path d="M328 372 L262 372" fill="none" stroke="#16150F" stroke-width="1.3" marker-end="url(#ak)"/>
+<rect x="267" y="357.5" width="21.555" height="12.5" fill="#F3F0E8"/>
+<text x="270" y="366" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="8.5" font-weight="400" fill="#47453D" text-anchor="start">SSE</text>
+<path d="M260 450 L435 450 L435 402" fill="none" stroke="#16150F" stroke-width="1.3" marker-end="url(#ak)"/>
+<rect x="297" y="435.5" width="63.035" height="12.5" fill="#F3F0E8"/>
+<text x="300" y="444" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="8.5" font-weight="400" fill="#47453D" text-anchor="start">HTTPS + MCP</text>
+<path d="M540 330 L608 330" fill="none" stroke="#E0482A" stroke-width="2.2" marker-end="url(#ar)"/>
+<circle cx="575" cy="330" r="9.5" fill="#E0482A" stroke="#F3F0E8" stroke-width="2"/>
+<text x="575" y="334" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="11" font-weight="800" fill="#FFFFFF" text-anchor="middle">2</text>
+<path d="M610 262 L542 262" fill="none" stroke="#E0482A" stroke-width="2.2" marker-end="url(#ar)"/>
+<circle cx="575" cy="262" r="9.5" fill="#E0482A" stroke="#F3F0E8" stroke-width="2"/>
+<text x="575" y="266" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="11" font-weight="800" fill="#FFFFFF" text-anchor="middle">5</text>
+<path d="M260 250 L328 250" fill="none" stroke="#E0482A" stroke-width="2.2" marker-end="url(#ar)"/>
+<circle cx="294" cy="250" r="9.5" fill="#E0482A" stroke="#F3F0E8" stroke-width="2"/>
+<text x="294" y="254" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="11" font-weight="800" fill="#FFFFFF" text-anchor="middle">8</text>
+<path d="M540 222 L568 222 L568 84 L1602 84 L1602 251 L1557 251" fill="none" stroke="#E0482A" stroke-width="2.2" marker-end="url(#ar)"/>
+<rect x="637" y="70.5" width="417.445" height="13.5" fill="#F3F0E8"/>
+<text x="640" y="80" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#E0482A" text-anchor="start">preview: 3000-a7f2.archpreview.app → dev server  (HTTP + HMR WebSocket)</text>
+<circle cx="1180" cy="84" r="9.5" fill="#E0482A" stroke="#F3F0E8" stroke-width="2"/>
+<text x="1180" y="88" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="11" font-weight="800" fill="#FFFFFF" text-anchor="middle">8</text>
+<path d="M1190 290 L1278 290" fill="none" stroke="#E0482A" stroke-width="2.2" marker-end="url(#ar)"/>
+<circle cx="1226" cy="290" r="9.5" fill="#E0482A" stroke="#F3F0E8" stroke-width="2"/>
+<text x="1226" y="294" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="11" font-weight="800" fill="#FFFFFF" text-anchor="middle">4</text>
+<path d="M1190 392 L1293 392" fill="none" stroke="#E0482A" stroke-width="2.2" marker-end="url(#ar)"/>
+<circle cx="1226" cy="392" r="9.5" fill="#E0482A" stroke="#F3F0E8" stroke-width="2"/>
+<text x="1226" y="396" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="11" font-weight="800" fill="#FFFFFF" text-anchor="middle">6</text>
+<path d="M1293 425 L1192 425" fill="none" stroke="#E0482A" stroke-width="2.2" marker-end="url(#ar)"/>
+<circle cx="1226" cy="425" r="9.5" fill="#E0482A" stroke="#F3F0E8" stroke-width="2"/>
+<text x="1226" y="429" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="11" font-weight="800" fill="#FFFFFF" text-anchor="middle">9</text>
+<path d="M1190 540 L1222 540 L1222 700 L1258 700" fill="none" stroke="#E0482A" stroke-width="2.2" marker-end="url(#ar)"/>
+<circle cx="1222" cy="620" r="9.5" fill="#E0482A" stroke="#F3F0E8" stroke-width="2"/>
+<text x="1222" y="624" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="11" font-weight="800" fill="#FFFFFF" text-anchor="middle">3</text>
+<path d="M1570 355 L1618 355" fill="none" stroke="#E0482A" stroke-width="2.2" marker-end="url(#ar)"/>
+<circle cx="1596" cy="355" r="9.5" fill="#E0482A" stroke="#F3F0E8" stroke-width="2"/>
+<text x="1596" y="359" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="11" font-weight="800" fill="#FFFFFF" text-anchor="middle">7</text>
+<path d="M262 545 L608 545" fill="none" stroke="#E0482A" stroke-width="2.2" marker-end="url(#ar)" marker-start="url(#sr)"/>
+<rect x="297" y="529.5" width="197.845" height="12.5" fill="#F3F0E8"/>
+<text x="300" y="538" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="8.5" font-weight="400" fill="#E0482A" text-anchor="start">commit per checkpoint · push webhooks</text>
+<circle cx="575" cy="545" r="9.5" fill="#E0482A" stroke="#F3F0E8" stroke-width="2"/>
+<text x="575" y="549" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="11" font-weight="800" fill="#FFFFFF" text-anchor="middle">10</text>
+<path d="M610 640 L580 640 L580 845 L542 845" fill="none" stroke="#E0482A" stroke-width="2.2" marker-end="url(#ar)"/>
+<path d="M580 728 L542 728" fill="none" stroke="#E0482A" stroke-width="2.2" marker-end="url(#ar)"/>
+<circle cx="580" cy="685" r="9.5" fill="#E0482A" stroke="#F3F0E8" stroke-width="2"/>
+<text x="580" y="689" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="11" font-weight="800" fill="#FFFFFF" text-anchor="middle">11</text>
+<path d="M140 750 L140 798" fill="none" stroke="#E0482A" stroke-width="2.2" marker-end="url(#ar)"/>
+<circle cx="140" cy="773" r="9.5" fill="#E0482A" stroke="#F3F0E8" stroke-width="2"/>
+<text x="140" y="777" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="11" font-weight="800" fill="#FFFFFF" text-anchor="middle">12</text>
+<path d="M420 910 L420 948 L1232 948 L1232 790 L1258 790" fill="none" stroke="#16150F" stroke-width="1.3" marker-end="url(#ak)"/>
+<rect x="637" y="935.5" width="306.73" height="12.5" fill="#F3F0E8"/>
+<text x="640" y="944" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="8.5" font-weight="400" fill="#47453D" text-anchor="start">app agents call models with a scoped virtual key (metered)</text>
+<rect x="30" y="960" width="1180" height="215" fill="#FBFAF6" stroke="#16150F" stroke-width="1.2"/>
+<text x="44" y="981" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="11" font-weight="700" fill="#16150F" text-anchor="start">CRITICAL PATH · PROMPT → LIVE</text>
+<circle cx="60" cy="1005" r="9.5" fill="#E0482A" stroke="#F3F0E8" stroke-width="2"/>
+<text x="60" y="1009" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="11" font-weight="800" fill="#FFFFFF" text-anchor="middle">1</text>
+<text x="78" y="1009" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#16150F" text-anchor="start">Prompt + references: POST /turns, open SSE stream</text>
+<circle cx="60" cy="1032" r="9.5" fill="#E0482A" stroke="#F3F0E8" stroke-width="2"/>
+<text x="60" y="1036" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="11" font-weight="800" fill="#FFFFFF" text-anchor="middle">2</text>
+<text x="78" y="1036" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#16150F" text-anchor="start">Gateway starts a Temporal BuildSession workflow</text>
+<circle cx="60" cy="1059" r="9.5" fill="#E0482A" stroke="#F3F0E8" stroke-width="2"/>
+<text x="60" y="1063" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="11" font-weight="800" fill="#FFFFFF" text-anchor="middle">3</text>
+<text x="78" y="1063" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#16150F" text-anchor="start">Brief, plan, estimate via model gateway; wait for approve</text>
+<circle cx="60" cy="1086" r="9.5" fill="#E0482A" stroke="#F3F0E8" stroke-width="2"/>
+<text x="60" y="1090" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="11" font-weight="800" fill="#FFFFFF" text-anchor="middle">4</text>
+<text x="78" y="1090" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#16150F" text-anchor="start">Claim a warm sandbox in the project’s home cell</text>
+<circle cx="60" cy="1113" r="9.5" fill="#E0482A" stroke="#F3F0E8" stroke-width="2"/>
+<text x="60" y="1117" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="11" font-weight="800" fill="#FFFFFF" text-anchor="middle">5</text>
+<text x="78" y="1117" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#16150F" text-anchor="start">Register preview route {host → sandbox, port}</text>
+<circle cx="60" cy="1140" r="9.5" fill="#E0482A" stroke="#F3F0E8" stroke-width="2"/>
+<text x="60" y="1144" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="11" font-weight="800" fill="#FFFFFF" text-anchor="middle">6</text>
+<text x="78" y="1144" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#16150F" text-anchor="start">Coder edits files through the in-sandbox daemon</text>
+<circle cx="650" cy="1005" r="9.5" fill="#E0482A" stroke="#F3F0E8" stroke-width="2"/>
+<text x="650" y="1009" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="11" font-weight="800" fill="#FFFFFF" text-anchor="middle">7</text>
+<text x="668" y="1009" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#16150F" text-anchor="start">Installs and API calls leave via the egress proxy</text>
+<circle cx="650" cy="1032" r="9.5" fill="#E0482A" stroke="#F3F0E8" stroke-width="2"/>
+<text x="650" y="1036" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="11" font-weight="800" fill="#FFFFFF" text-anchor="middle">8</text>
+<text x="668" y="1036" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#16150F" text-anchor="start">Preview loads through the proxy; HMR on every edit</text>
+<circle cx="650" cy="1059" r="9.5" fill="#E0482A" stroke="#F3F0E8" stroke-width="2"/>
+<text x="650" y="1063" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="11" font-weight="800" fill="#FFFFFF" text-anchor="middle">9</text>
+<text x="668" y="1063" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#16150F" text-anchor="start">Tester verifies; agent-caused errors self-heal for free</text>
+<circle cx="650" cy="1086" r="9.5" fill="#E0482A" stroke="#F3F0E8" stroke-width="2"/>
+<text x="650" y="1090" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="11" font-weight="800" fill="#FFFFFF" text-anchor="middle">10</text>
+<text x="668" y="1090" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#16150F" text-anchor="start">Checkpoint: git commit + snapshot + DB branch</text>
+<circle cx="650" cy="1113" r="9.5" fill="#E0482A" stroke="#F3F0E8" stroke-width="2"/>
+<text x="650" y="1117" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="11" font-weight="800" fill="#FFFFFF" text-anchor="middle">11</text>
+<text x="668" y="1117" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#16150F" text-anchor="start">Inspection gate, then immutable deploy</text>
+<circle cx="650" cy="1140" r="9.5" fill="#E0482A" stroke="#F3F0E8" stroke-width="2"/>
+<text x="650" y="1144" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="11" font-weight="800" fill="#FFFFFF" text-anchor="middle">12</text>
+<text x="668" y="1144" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#16150F" text-anchor="start">Live on a custom domain; traced, metered, hibernated</text>
+<rect x="1240" y="960" width="240" height="215" fill="#FBFAF6" stroke="#16150F" stroke-width="1.2"/>
+<text x="1252" y="980" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="11" font-weight="700" fill="#16150F" text-anchor="start">LEGEND</text>
+<path d="M1254 1004 L1304 1004" fill="none" stroke="#E0482A" stroke-width="2.2" marker-end="url(#ar)"/>
+<circle cx="1279" cy="1004" r="9.5" fill="#E0482A" stroke="#F3F0E8" stroke-width="2"/>
+<text x="1279" y="1008" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="11" font-weight="800" fill="#FFFFFF" text-anchor="middle">1</text>
+<text x="1314" y="1008" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">critical path, step n</text>
+<path d="M1254 1032 L1304 1032" fill="none" stroke="#16150F" stroke-width="1.3" marker-end="url(#ak)"/>
+<text x="1314" y="1036" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">control / request flow</text>
+<path d="M1254 1060 L1304 1060" fill="none" stroke="#2350C8" stroke-width="1.3" marker-end="url(#ab)"/>
+<text x="1314" y="1064" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">data read / write</text>
+<rect x="1254" y="1078" width="50" height="22" fill="#FBFAF6" stroke="#2350C8" stroke-width="1.6"/>
+<text x="1314" y="1093" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">data store</text>
+<rect x="1254" y="1110" width="50" height="22" fill="none" stroke="#16150F" stroke-dasharray="4 3"/>
+<text x="1314" y="1125" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#47453D" text-anchor="start">zone / external</text>
+<text x="1252" y="1160" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#7D7A70" text-anchor="start">not to scale</text>
+<rect x="1500" y="960" width="270" height="215" fill="#FBFAF6" stroke="#16150F" stroke-width="2"/>
+<text x="1512" y="976" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="9" font-weight="400" fill="#7D7A70" text-anchor="start">PROJECT</text>
+<text x="1512" y="995" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#16150F" text-anchor="start">Architect 2.0</text>
+<line x1="1500" y1="1003" x2="1770" y2="1003" stroke="#16150F" stroke-width="1"/>
+<text x="1512" y="1019" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="9" font-weight="400" fill="#7D7A70" text-anchor="start">DRAWING</text>
+<text x="1512" y="1038" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#16150F" text-anchor="start">System architecture</text>
+<line x1="1500" y1="1046" x2="1770" y2="1046" stroke="#16150F" stroke-width="1"/>
+<text x="1512" y="1062" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="9" font-weight="400" fill="#7D7A70" text-anchor="start">DRAWN BY</text>
+<text x="1512" y="1081" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#16150F" text-anchor="start">Ritika Das</text>
+<line x1="1500" y1="1089" x2="1770" y2="1089" stroke="#16150F" stroke-width="1"/>
+<text x="1512" y="1105" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="9" font-weight="400" fill="#7D7A70" text-anchor="start">DATE</text>
+<text x="1512" y="1124" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#16150F" text-anchor="start">28 Sep 2026</text>
+<line x1="1500" y1="1132" x2="1770" y2="1132" stroke="#16150F" stroke-width="1"/>
+<line x1="1635" y1="1132" x2="1635" y2="1175" stroke="#16150F" stroke-width="1"/>
+<text x="1512" y="1148" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="9" font-weight="400" fill="#7D7A70" text-anchor="start">REV</text>
+<text x="1512" y="1168" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="16" font-weight="800" fill="#E0482A" text-anchor="start">A</text>
+<text x="1647" y="1148" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="9" font-weight="400" fill="#7D7A70" text-anchor="start">SHEET</text>
+<text x="1647" y="1168" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#16150F" text-anchor="start">1 of 1</text>
+</svg>
