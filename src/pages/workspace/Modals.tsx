@@ -193,7 +193,7 @@ export function GitHubModal({ project, onClose }: { project: Project; onClose: (
           </div>
           <div className="divider" style={{ margin: '10px 0' }} />
           <div className="label">Last commit</div>
-          <div className="mono" style={{ fontSize: 12.5 }}>architect: Refund limit enforced in code · 2m ago</div>
+          <div className="mono" style={{ fontSize: 12.5 }}>architect: test pass, 14 of 14 flows · just now</div>
         </div>
         <div className="row wrap" style={{ gap: 6 }}>
           <button className="btn btn-sm btn-line" disabled={busy} onClick={() => wait(() => toast('Pulled. Already up to date.'), 700)}>

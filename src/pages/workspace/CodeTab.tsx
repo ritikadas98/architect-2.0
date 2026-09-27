@@ -28,7 +28,7 @@ const TERM_REPLIES: Record<string, string[]> = {
   ls: ['app/  agents/  lib/  design.md  architect.json  .architect/'],
   'architect status': ['● preview  running · glow-support.archpreview.app', '● agents   3 healthy · p50 1.9s', '● github   ' + 'see the GitHub button up top'],
   'architect logs': ['  POST /api/chat 200 · 1.7s · desk → orders', '  POST /api/refund 202 · queued for owner (₹2,400 > ₹1,500)'],
-  'git log': ['a91f2c3 architect: Refund limit enforced in code', '4be07d1 architect: Hindi replies added', '19c3aa0 you: chat button to sage'],
+  'git log': ['a91f2c3 architect: test pass, 14 of 14 flows (Rev F)', '4be07d1 architect: fix chat scroll, free (Rev E)', '19c3aa0 architect: team inbox and refund approvals (Rev D)'],
 }
 
 function Terminal() {
@@ -120,7 +120,7 @@ function OwnTools() {
 export default function CodeTab() {
   const { mode, setMode } = useStore()
   const { revs } = useWS()
-  const [file, setFile] = useState('app/api/refund/route.ts')
+  const [file, setFile] = useState('components/ChatWindow.tsx')
   if (mode !== 'dev')
     return (
       <div className="page">
@@ -134,8 +134,8 @@ export default function CodeTab() {
         </div>
       </div>
     )
-  const fRev = revs.find((r) => r.rev === 'F')
-  const last = FILE_TREE.find((f) => f.path === file && (f.changed || f.added)) ? fRev : revs.find((r) => r.rev === 'C')
+  const fRev = revs.find((r) => r.rev === 'E')
+  const last = FILE_TREE.find((f) => f.path === file && (f.changed || f.added)) ? fRev : revs.find((r) => r.rev === 'D')
   return (
     <div className="ws-codetab">
       <aside className="ws-tree" aria-label="Files">

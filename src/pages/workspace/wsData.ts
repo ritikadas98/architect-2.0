@@ -25,42 +25,47 @@ export const REV_DIFFS: Record<string, RevDiff> = {
     dev: ['+ app/chat/page.tsx', '+ components/ChatWindow.tsx', '+ app/order/[id]/page.tsx', '+ lib/verify.ts'],
   },
   C: {
-    plain: ['You got a team inbox', 'Refunds over ₹1,500 now wait for your approval'],
-    dev: ['+ app/inbox/page.tsx', '+ app/refunds/page.tsx', '+ agents/refunds.py', '~ agents/desk.py  handoff → refunds'],
+    plain: ['Three AI agents: front desk, order tracker, refund helper', 'Orders come from 24 sample orders until you connect Shopify'],
+    dev: ['+ agents/desk.py', '+ agents/orders.py', '+ agents/refunds.py', '+ fixtures/orders.json (24 rows)', '+ egress allowlist *.myshopify.com'],
   },
   D: {
-    plain: ['The chat button turned sage instead of black'],
-    dev: ['- --btn-bg: #2E2A24;', '+ --btn-bg: #7C8B6F;'],
+    plain: ['You got a team inbox', 'Refunds over ₹1,500 now wait for your approval'],
+    dev: ['+ app/inbox/page.tsx', '+ app/refunds/page.tsx', '+ app/api/refund/route.ts', '~ agents/desk.py  handoff → refunds'],
   },
   E: {
-    plain: ['The desk replies in Hindi or Hinglish when the customer does'],
-    dev: ['+ skill hindi@1.3 installed', '~ agents/desk.py  language=auto(en,hi)', '+ evals/hinglish.yaml (12 cases)'],
+    plain: ['The chat scrolls to the newest message again. My bug, so it was free.'],
+    dev: CODE_SAMPLE.split('\n').filter((l) => l.startsWith('+') || l.startsWith('-')),
   },
   F: {
-    plain: ['The refund limit is now checked in code. Talking the AI into more won’t work.'],
-    dev: CODE_SAMPLE.split('\n').filter((l) => l.startsWith('+') || l.startsWith('-')),
+    plain: ['I used the app like a customer would. 14 of 14 things worked.', 'Agents answered 18 of 20 test questions right'],
+    dev: ['playwright  14 flows · 14 passed', 'evals       18/20 · 2 failures in agents/refunds.py', 'no code changes'],
   },
 }
 
 /* ---------------- Files for the code viewer ---------------- */
 
 export const FILE_SNIPPETS: Record<string, string> = {
-  'app/api/refund/route.ts': CODE_SAMPLE,
-  'lib/limits.ts': `+ // Added in Rev F. The one place the refund limit lives.
-+ export const REFUND_LIMIT_INR = 1500
-+
-+ export function needsOwner(amount: number) {
-+   return amount > REFUND_LIMIT_INR
-+ }`,
+  'components/ChatWindow.tsx': CODE_SAMPLE,
+  'app/api/refund/route.ts': `import { NextRequest } from 'next/server'
+import { refunds } from '@/lib/shopify'
+import { requireVerifiedCustomer } from '@/lib/verify'
+
+export async function POST(req: NextRequest) {
+  const { orderId, amount, reason } = await req.json()
+  await requireVerifiedCustomer(req, orderId)
+
+  // ⚠ Inspection: the ₹1,500 limit only lives in the agent's prompt.
+  // Nothing here stops a bigger refund. "Fix it for me" moves it into code.
+  return refunds.create({ orderId, amount, reason })
+}`,
   'agents/refunds.py': `from lyzr_adk import Agent, tool
 from tools.shopify import get_order
 
 refunds = Agent(
     name="Refund helper",
     model="auto",
--   instructions="Approve refunds under 1500 INR. Escalate the rest.",
-+   instructions="Collect the order, amount and reason. Call request_refund.",
-+   # The limit is enforced in /api/refund, not here.
+    instructions="Approve refunds under 1500 INR. Escalate the rest.",
+    # ⚠ Inspection: this limit is only a sentence in a prompt.
     tools=[get_order, tool("request_refund", "/api/refund")],
 )`,
   'lib/verify.ts': `export async function requireVerifiedCustomer(req: Request, orderId: string) {
@@ -96,8 +101,8 @@ export function snippetFor(path: string) {
   if (FILE_SNIPPETS[path]) return FILE_SNIPPETS[path]
   const name = path.split('/').pop() || path
   if (path.endsWith('.py'))
-    return `from lyzr_adk import Agent\n\n# ${name}: one of your three agents.\n# Open agents/refunds.py to see the change from Rev F.`
-  return `// ${path}\n// Unchanged since Rev C.\n// The files with a badge are the ones that changed.\n\nexport default function Page() {\n  return <Screen />\n}`
+    return `from lyzr_adk import Agent\n\n# ${name}: one of your three agents.\n# Written in Rev C. The refund rule lives in agents/refunds.py.`
+  return `// ${path}\n// Unchanged since Rev D.\n// The files with a badge are the ones that changed.\n\nexport default function Page() {\n  return <Screen />\n}`
 }
 
 /* ---------------- Chat script: understand, then ask ---------------- */

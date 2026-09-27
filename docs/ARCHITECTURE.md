@@ -36,7 +36,7 @@ Events stream to the browser over **SSE** (Server-Sent Events: a one-way HTTP st
 | ⑥ | **Code** | The Coder sub-agent runs as a child workflow. Every tool call, such as `search_replace`, `write_file` or `exec("npm run dev")`, goes to the daemon over an mTLS tunnel (a connection where both sides prove who they are). Each edit emits `file.diff`. The Simple view shows "Building the customer chat". The Developer view shows the diff. |
 | ⑦ | **Install and outbound calls** | `npm install` and `pip install` leave the sandbox through the egress proxy and hit a regional package mirror. A Shopify call carries a placeholder token. The proxy swaps in the real token from the vault. |
 | ⑧ | **Live preview** | The web app's preview iframe loads `https://3000-a7f2.archpreview.app`. The preview proxy looks up the host in Redis and forwards it through the cell tunnel to the dev server. Hot reload (HMR) runs over a WebSocket through the same path. The click-to-edit overlay loads inside the iframe. |
-| ⑨ | **Verify and self-heal** | The Tester runs typecheck, build, Playwright flows and the agent eval set. It reads console logs and takes screenshots. A failure enters the self-heal ladder (Section 6). Fixes for errors the agent caused are logged `cause=agent` and cost 0 credits. Event: `fix.applied {billable:false}`. |
+| ⑨ | **Verify and self-heal** | The Tester runs typecheck, build, Playwright flows and the agent eval set. It reads console logs and takes screenshots. A failure enters the self-heal ladder (Section 3.4). Fixes for errors the agent caused are logged `cause=agent` and cost 0 credits. Event: `fix.applied {billable:false}`. |
 | ⑩ | **Checkpoint** | When the turn is green, the orchestrator makes a checkpoint. That is a git commit, a sandbox filesystem snapshot to object storage, and a database branch. The GitHub App service pushes the commit to the user's repo. Event: `checkpoint.created {rev:"B"}`. |
 | ⑪ | **Inspect and deploy** | The user presses Launch. The Inspection service runs static analysis, an LLM review and runtime probes. "Must fix" findings block the deploy. The Deploy service builds immutable artifacts. The frontend goes to the edge. Each agent becomes an OCI image (a standard container image) on Cloud Run. Secrets are bound as placeholders. The custom domain is attached. Event: `deploy.live`. |
 | ⑫ | **Running** | An end user opens `glow-support.architect.app`. The frontend calls the agent containers through `/invoke`. The agents call models through the LLM gateway with a scoped virtual key, so the owner's usage is metered and capped. Traces flow to observability. The builder sandbox hibernates after 10 idle minutes. |
@@ -480,7 +480,7 @@ The prototype is a **front-end** built with Vite, React and TypeScript, hosted o
 
 | Area | In the prototype | Designed here, not built |
 |---|---|---|
-| Auth and projects | Optional Supabase auth and a `projects` table. Falls back to local state | SSO, orgs, roles, RLS policies |
+| Auth and projects | Real sign-in (Google, GitHub, email link) and a `projects` table with row-level security, via Supabase, when configured. Falls back to a labelled demo account | SSO, orgs, roles |
 | Brief, Taste, questions, skills suggestion | Full UI with scripted reads and questions | Vision model, embedding match, registry |
 | Estimate | Shown from the plan (12–18 min, 140–190 credits) | Regression on the ledger |
 | Build | Scripted event stream rendered in Simple and Developer views, including a free self-fix | Temporal, harness, sandboxes, SSE |

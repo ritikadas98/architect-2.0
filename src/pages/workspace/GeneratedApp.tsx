@@ -414,7 +414,7 @@ export default function GeneratedApp({
   }, [openChatTick])
 
   // Older revisions: before Rev D the button was ink.
-  const old = frozenRev && 'ABC'.includes(frozenRev)
+  const old = false // the sage buttons came from the Taste step, so every revision has them
   const vars = { '--ga-btn': old ? C.ink : edits.btnColor } as React.CSSProperties
 
   return (
@@ -435,7 +435,7 @@ export default function GeneratedApp({
             </header>
             <section className="ga-hero">
               <T id="eyebrow" def="Small-batch skincare, Jaipur" ctl={ctl} className="ga-eyebrow" />
-              <Guess on={ctl.guesses && !edits.text.headline} note="Guessed: headline. Yours will be better." block>
+              <Guess on={ctl.guesses && !edits.text.headline} note="Guessed: headline. Yours will be better." block place="above">
                 <T id="headline" def="Skin that feels rested." ctl={ctl} as="h1" className="ga-h1" />
               </Guess>
               <T id="sub" def="Gentle formulas. Daylight packaging. Nothing you can’t pronounce." ctl={ctl} as="p" className="ga-sub" />

@@ -464,51 +464,54 @@ export const FINDINGS: Finding[] = [
 /* ---------------- Revisions ---------------- */
 
 export const REVISIONS = [
-  { rev: 'F', title: 'Refund limit enforced in code', when: '2 min ago', by: 'Architect', credits: 6 },
-  { rev: 'E', title: 'Hindi replies added', when: '9 min ago', by: 'Architect', credits: 14 },
-  { rev: 'D', title: 'You changed the chat button to sage', when: '12 min ago', by: 'You (click-edit)', credits: 0 },
-  { rev: 'C', title: 'Team inbox and refund approvals', when: '16 min ago', by: 'Architect', credits: 48 },
-  { rev: 'B', title: 'Customer chat and order status', when: '21 min ago', by: 'Architect', credits: 61 },
-  { rev: 'A', title: 'Blueprint approved', when: '23 min ago', by: 'You', credits: 0 },
+  { rev: 'F', title: 'Tested like a customer: 14 of 14 flows passed', when: 'just now', by: 'Architect', credits: 9 },
+  { rev: 'E', title: 'Fixed my own bug: the chat didn’t scroll', when: '3 min ago', by: 'Architect', credits: 0 },
+  { rev: 'D', title: 'Team inbox and refund approvals', when: '5 min ago', by: 'Architect', credits: 48 },
+  { rev: 'C', title: 'Three agents, Shopify on sample orders', when: '8 min ago', by: 'Architect', credits: 38 },
+  { rev: 'B', title: 'Customer chat and order status', when: '11 min ago', by: 'Architect', credits: 61 },
+  { rev: 'A', title: 'Blueprint approved', when: '14 min ago', by: 'You', credits: 0 },
 ]
 
 /* ---------------- Developer view ---------------- */
 
-export const FILE_TREE = [
+export const FILE_TREE: { path: string; depth: number; dir?: boolean; changed?: boolean; added?: boolean }[] = [
   { path: 'app', dir: true, depth: 0 },
   { path: 'app/chat/page.tsx', depth: 1 },
   { path: 'app/order/[id]/page.tsx', depth: 1 },
   { path: 'app/inbox/page.tsx', depth: 1 },
   { path: 'app/refunds/page.tsx', depth: 1 },
-  { path: 'app/api/refund/route.ts', depth: 1, changed: true },
+  { path: 'app/api/refund/route.ts', depth: 1 },
+  { path: 'components', dir: true, depth: 0 },
+  { path: 'components/ChatWindow.tsx', depth: 1, changed: true },
   { path: 'agents', dir: true, depth: 0 },
   { path: 'agents/desk.py', depth: 1 },
   { path: 'agents/orders.py', depth: 1 },
-  { path: 'agents/refunds.py', depth: 1, changed: true },
+  { path: 'agents/refunds.py', depth: 1 },
   { path: 'lib', dir: true, depth: 0 },
   { path: 'lib/verify.ts', depth: 1 },
-  { path: 'lib/limits.ts', depth: 1, added: true },
   { path: 'design.md', depth: 0 },
   { path: 'architect.json', depth: 0 },
   { path: '.architect/skills.json', depth: 0 },
 ]
 
-export const CODE_SAMPLE = `import { NextRequest } from 'next/server'
-import { refunds } from '@/lib/shopify'
-import { REFUND_LIMIT_INR, needsOwner } from '@/lib/limits'
-import { requireVerifiedCustomer } from '@/lib/verify'
+export const CODE_SAMPLE = `import { useEffect, useRef } from 'react'
+import { Message } from './Message'
 
-export async function POST(req: NextRequest) {
-  const { orderId, amount, reason } = await req.json()
-  const customer = await requireVerifiedCustomer(req, orderId)
+export function ChatWindow({ messages }: { messages: Msg[] }) {
+  const end = useRef<HTMLDivElement>(null)
 
-- // limit lived in the agent prompt only
-- return refunds.create({ orderId, amount, reason })
-+ // Enforced here, outside the model. The agent can ask; only code can approve.
-+ if (needsOwner(amount)) {
-+   return queueForOwner({ orderId, amount, reason, customer })
-+ }
-+ return refunds.create({ orderId, amount, reason })
+  useEffect(() => {
+-   end.current.scrollIntoView()
++   // Rev E: the ref is empty on first paint. Guard it, and pin to the bottom.
++   end.current?.scrollIntoView({ block: 'end' })
+  }, [messages.length])
+
+  return (
+    <div className="chat" role="log" aria-live="polite">
+      {messages.map((m) => <Message key={m.id} {...m} />)}
+      <div ref={end} />
+    </div>
+  )
 }`
 
 export const TERMINAL_LINES = [
