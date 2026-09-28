@@ -55,6 +55,6 @@ cp .env.example .env.local   # optional: add Supabase URL + anon key
 npm run dev                  # http://localhost:5173/architect/
 ```
 
-Stack: Vite, React 19, TypeScript, React Router. No UI library: the drafting-table design system is in `src/styles`. Deployed to GitHub Pages by `.github/workflows/deploy.yml`.
+Stack: Vite, React 19, TypeScript, React Router. No UI library: the drafting-table design system is in `src/styles`. Published to ritikadas.in/architect by `scripts/publish.sh`, which copies the build into the portfolio site. `.github/workflows/build.yml` checks every push builds.
 
 Regenerate the diagram with `python3 docs/diagram/gen_svg.py docs/architecture.svg && rsvg-convert -z 2 docs/architecture.svg -o docs/architecture.png`.

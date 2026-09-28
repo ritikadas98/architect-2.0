@@ -4,7 +4,7 @@ import { Logo, ThemeToggle } from '../components/ui'
 import { Icon } from '../components/Icon'
 import diagramUrl from '../../docs/architecture.svg?url'
 
-const REPO_DOC = 'https://github.com/ritikadas98/architect/blob/main/docs/ARCHITECTURE.md'
+const REPO_DOC = 'https://github.com/ritikadas98/architect-2.0/blob/main/docs/ARCHITECTURE.md'
 
 const STEPS: { title: string; body: string; tech: string }[] = [
   {

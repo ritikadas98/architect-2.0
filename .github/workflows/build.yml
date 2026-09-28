@@ -1,0 +1,21 @@
+name: Build check
+
+# The live site is served from ritikadas.in/architect (the portfolio repo).
+# scripts/publish.sh builds this app and copies it there. This workflow just
+# keeps main green: every push must type-check and build.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
