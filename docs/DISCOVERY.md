@@ -10,8 +10,8 @@ This is how we got from the brief to the product. It runs step by step, with the
 |---|---|---|---|
 | 1 | Context and goals | What does Lyzr sell, and what does it need Architect to do? | Done |
 | 2 | Users and segments | Who's involved, and how do they differ? | Done |
-| 3 | Problems per segment | What does each one struggle with, and how do we know? | Next |
-| 4 | Target | Which segment and which problem first? | |
+| 3 | Problems per segment | What does each one struggle with, and how do we know? | Done |
+| 4 | Target | Which segment and which problem first? | Next |
 | 5 | Problem statement | One paragraph everything hangs from | |
 | 6 | Journeys | Today's journey vs the new one | |
 | 7 | Solutions and priorities | What's in v1, what's cut, and why | |
@@ -158,3 +158,58 @@ We rejected the brief's "technical vs non-technical" axis. In an enterprise, wha
 - **"Lead with consultancies because it's the existing segment" isn't enough on its own.** The stronger reason is that they're a customer *and* a channel. The trap is that the user (the consultant) and the gatekeepers (at the client) sit in different companies. Architect has to help one company satisfy another's IT.
 - **Designing for ourselves.** Ritika has held the delivery-lead role herself, which is insight and bias at the same time. Every assumption about delivery leads gets checked against evidence in Step 3.
 - **White-labelling has consequences for the product.** Partner branding, many clients per consultant, and strict separation of each client's data.
+
+---
+
+## Step 3. The delivery team's problems
+
+### Evidence and its limits
+
+These are first-hand accounts from two sides of consulting delivery. Ritika was a **technical consultant** on SAP planning products (HR, revenue, CapEx and OpEx planning) and later a **product/project manager** on one implementation. That project was inherited from a contractor who had dropped the client, and the client was difficult. We treat both accounts as **hypotheses** and test each one against outside evidence.
+
+This is still one person and one firm's way of working. A check with 2–3 former colleagues on other projects is the next piece of evidence to add.
+
+### What we heard, and what the evidence says
+
+| # | Problem (first-hand) | Wider evidence | Verdict |
+|---|---|---|---|
+| 1 | Requirements keep changing (small tweaks up to weeks of work) while earlier ones are unfinished | 47% of failed projects fail on poor requirements management. Scope creep hits 41–52% of projects ([PMI](https://www.pmi.org/learning/thought-leadership/pulse/core-competency-project-program-success), [PMI 2018](https://www.pmi.org/-/media/pmi/documents/public/pdf/learning/thought-leadership/pulse/pulse-of-the-profession-2018.pdf)) | Strong |
+| 2 | Status meetings and chasing. Consultants can't give solid timelines, and the delivery lead takes the client leadership's anger | PMI links requirement failures to poor communication and weak stakeholder involvement | Strong, as a symptom |
+| 3 | Scope and timelines are promised to the client **before engineers have broken the work down**. Pushing back is hard on fast projects, and trust between PM and engineers breaks | Consistent with #1 and #2. We found no direct statistic | Strong (first-hand, from both sides) |
+| 4 | Testing is manual and late. Errors surface in UAT, which once broke down for two weeks on the old contractor's code. **Tests are written by the same consultants who built the work** | 32% of organisations name quality as the top barrier to agents in production ([LangChain 2026](https://www.langchain.com/state-of-agent-engineering)). Gartner projects 40% of enterprise AI failures by 2028 will trace to inadequate evaluation and monitoring ([Morph](https://www.morphllm.com/ai-agent-evaluation)). Regulators require **independent** validation (RBI FREE-AI, SR 11-7) | Strong, and worse for agents, whose answers vary for the same input |
+| 5 | Poor coordination between departments. Logic that depended on another department's rules got missed, causing rework | Indirect, through PMI's stakeholder findings | Plausible |
+| 6 | The client is slow on its own dependencies and approvals, while adding scope | PMI names inadequate sponsor support | Plausible |
+| 7 | Change requests are busywork | Same root as #1 | Strong, as a symptom |
+| 8 | New access to client systems takes 3–7 days through the client's process | Every agent needs its own new identity and permissions (Step 2) | Strong, and worse for agents |
+| 9 | Handover from the previous contractor: no documentation, no reasons behind decisions, no record of what was half-built | The brief itself asks for "import an existing project and keep working on it" | Strong (first-hand) |
+| 10 | Work lives in email, Teams and Excel. Specs arrive as a process design document (PDD) and blueprint on new builds, and as tickets in the client's system on running ones | Typical of consultancy practice | Strong, as context |
+
+### Arguments in this step
+
+- **"Difficult client" is part of the story, not all of it.** With agents, some change is unavoidable: people only learn what they want from an agent once they see it answer real questions. The goal isn't to stop change. It's to make every change **cheap and visible**, with a cost and a date. Clients add scope freely partly because they never see the price.
+- **Status meetings are a symptom.** They exist because progress can't be seen without asking a person. An agent build tool already knows what's done, what's failing and what's waiting on whom. There's a trap, though: full transparency can backfire with a difficult client. So there are two views, one for the team and one for the client.
+- **"Build first, chase approvals later" backfires with agents.** If security later rules that data can't leave the region, or that an agent can't write to a core system, the build is redone. Known rules (Step 2's starter packs) let teams build fast *and* safely.
+- **People who test their own work test what they meant, not what the business needed.** This explains the missed cross-department logic, and it's why regulators insist on independent validation.
+- **Don't replace Teams, Jira or Excel.** Consultancies and their clients won't switch tools for one vendor. Plug into them.
+- **Documents aren't missing. They drift away from the build.** The reasons behind decisions are never written down.
+
+### The three root problems
+
+These were chosen because they **cause** the others.
+
+1. **Promises come before the work is understood.** Scope and timelines are sold before anyone who builds has broken them down. This causes #2, #3, #6 and #7, and fuels #1.
+2. **Proof comes too late.** Testing happens at the end, done by the builders, and misses other departments' logic. This causes #4 and #5, and much of the rework.
+3. **Knowledge doesn't survive.** Decisions, reasons and progress are scattered across email and Excel, and leave when people leave. This causes #9, repeated mistakes, and projects that restart from zero.
+
+We didn't pick "requirements keep changing" as a root. It's the most common symptom, but it's largely driven by #1 (nobody sees the cost of a change) and #3 (nobody remembers why the plan was the plan). Some clients will keep changing their minds regardless. This is a judgement call to revisit if colleague interviews disagree.
+
+### Ideas this step produced (for Step 7)
+
+- A **priced, dated change request** generated from each client ask
+- A **live status** with a team view and a client view, plus a dependency tracker showing what's waiting on whom
+- Promises made **from an engineer-backed blueprint**, with estimates given as ranges with confidence
+- A **living PDD** written from what's actually built, including the reason behind each decision
+- **Business-written test cases from day one**, run after every change, with each department reviewing its own logic (an ownership map)
+- An **access request pack** generated from the blueprint on day one
+- **Import that produces a handover report**: what was built, promised, half-done and broken, and what the last team assumed
+- **Integrations** with Teams, Jira/ServiceNow and Excel export
