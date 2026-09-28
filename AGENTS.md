@@ -6,6 +6,7 @@ You're picking up a take-home assignment that is mostly built and already live. 
 - **Live:** https://ritikadas.in/architect/
 - **Code:** https://github.com/ritikadas98/architect-2.0
 - **Architecture write-up:** `docs/ARCHITECTURE.md`, with the diagram at `docs/architecture.png`
+- **Product discovery (in progress, one step at a time with Ritika):** `docs/DISCOVERY.md`. In every step, argue with her using researched facts, and never agree by default. She asked for this explicitly.
 - **Started:** 2026-09-28. Self-set deadline: 24 hours, so about 2026-09-29.
 
 ---
