@@ -96,20 +96,62 @@ Upload both, and add them to the GitHub repo.
 - the publish script
 - a CI build check
 
-**Still open:**
-1. **Supabase (real sign-in and database), waiting on Ritika's yes/no.** The code is ready (`src/lib/supabase.ts`, `src/lib/store.tsx`, `supabase/schema.sql`). The steps:
-   - create a Supabase project
-   - run `supabase/schema.sql` in its SQL editor
-   - switch on the Google and GitHub providers (Google needs an OAuth client in Google Cloud; GitHub needs an OAuth app)
-   - add `https://ritikadas.in/architect/` to the allowed redirect URLs
-   - put `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` in `.env.local`
-   - run `./scripts/publish.sh`
+**Résumé:** fixed by Ritika on 2026-09-28. She removed the stray ", ." from the first CorpAsia bullet. Upload her own PDF. The résumé in the portfolio repo is an older version, so leave it alone.
 
-   The anon key is safe to be public, because row-level security protects the data. Without keys, the app runs a clearly labelled demo account.
-2. **Her voice needs her approval.** That's the README's first-person "The idea" paragraph and the two form answers (drafts in section 9). Go through them with her. She likes casual, bold and dry, and hates polish (section 6).
+**Still open**, in this order:
+
+1. **Supabase: real sign-in and a real database. APPROVED by Ritika on 2026-09-28, in progress.**
+
+   The code is ready and needs no changes:
+   - `src/lib/supabase.ts`: the client, PKCE flow, redirect back to the app root
+   - `src/lib/store.tsx`: mirrors the session into the store and syncs `projects`
+   - `supabase/schema.sql`: the table, plus row-level security so each user sees only their own rows
+   - `src/pages/Login.tsx`: Google, GitHub and email magic-link buttons, which fall back to demo mode when there are no keys
+
+   Guide her one step at a time. She clicks; you explain what each step is for in one plain line.
+   - [ ] **Step 1. Create the project (waiting on her).** At supabase.com: New project, name `architect-2`, region Mumbai (ap-south-1). She sends the **Project URL** and the **anon / publishable key**. Both are public by design. Never ask for the `service_role` or secret key.
+   - [ ] **Step 2. The table.** She pastes `supabase/schema.sql` into the SQL editor and runs it. Confirm that the `projects` table exists with RLS on.
+   - [ ] **Step 3. Redirect URLs.** Under Authentication → URL Configuration:
+     - Site URL: `https://ritikadas.in/architect/`
+     - Additional redirect URL: `http://localhost:5173/architect/`
+   - [ ] **Step 4. GitHub sign-in.** On GitHub, go to Settings → Developer settings → OAuth Apps → New.
+     - Homepage: `https://ritikadas.in/architect/`
+     - Callback: `https://<project-ref>.supabase.co/auth/v1/callback`
+
+     Paste the Client ID and secret into Supabase under Authentication → Providers → GitHub.
+   - [ ] **Step 5. Google sign-in.** In Google Cloud Console:
+     - create a project
+     - fill in the OAuth consent screen (External; app name "Architect 2.0"; her email)
+     - create Credentials → OAuth client ID (Web), with authorised JavaScript origin `https://ritikadas.in` and redirect URI `https://<project-ref>.supabase.co/auth/v1/callback`
+
+     Paste the ID and secret into Supabase under Providers → Google. The consent screen can stay in "Testing" if she adds test users, but publish it if reviewers must sign in with any Google account.
+   - [ ] **Step 6. Email link.** It's on by default in Supabase. Just check it's enabled.
+   - [ ] **Step 7. Keys into the build.** Put `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` in `.env.local`, which is gitignored. Run `npx tsc -b`, then `./scripts/publish.sh`.
+   - [ ] **Step 8. Test live** at https://ritikadas.in/architect/#/login:
+     - sign in with each provider
+     - create a project
+     - reload and check it's still there
+     - check the row in Supabase's table editor
+     - check the account menu shows "Signed in with …" and not "Demo account"
+
+     Then update README "What's real" if anything differs.
+   - If she stops partway, the app still works in demo mode. Nothing breaks.
+
+2. **Her voice needs her approval.** Two pieces speak as her. Show her each one, and let her reword it or ask you to:
+   - the README's first-person "The idea" paragraph ("I've built three products with Claude Code, Cursor and Lovable…")
+   - the two form answers, "Why would a non-technical user pick your platform?" and "Why would a technical user pick your platform?" (drafts in section 9)
+
+   She likes casual, bold and dry, and hates polish (section 6). Once she approves, update README and section 9, and publish.
+
 3. **Architecture walkthrough for the interview.** Explain `docs/ARCHITECTURE.md` to her in plain words, section by section, until she can defend each choice. Start with the prompt-to-live walkthrough (§2), the three proxies (§3.8), sandboxes (§3.6) and scaling (§5). She must never be caught out claiming engineering depth she doesn't have. The form's "formal software engineering experience" answer should be honest (No).
-4. **Résumé typo.** In her PDF, the first CorpAsia bullet ends "cut planning time 50%, ." with a stray comma. She fixes it in her own source file. The résumé in the portfolio repo is an older version, so leave it alone.
-5. **Submit.** She fills in the form herself.
+
+4. **Submit.** She fills in the form herself. It needs:
+   - the live URL: https://ritikadas.in/architect/
+   - the repo: https://github.com/ritikadas98/architect-2.0
+   - the diagram: `docs/architecture.png`
+   - the .md: `docs/ARCHITECTURE.md`
+   - her résumé PDF
+   - the two approved answers
 
 ---
 
