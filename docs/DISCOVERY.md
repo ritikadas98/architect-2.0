@@ -9,8 +9,8 @@ This is how we got from the brief to the product. It runs step by step, with the
 | # | Step | Question | Status |
 |---|---|---|---|
 | 1 | Context and goals | What does Lyzr sell, and what does it need Architect to do? | Done |
-| 2 | Users and segments | Who's involved, and how do they differ? | Next |
-| 3 | Problems per segment | What does each one struggle with, and how do we know? | |
+| 2 | Users and segments | Who's involved, and how do they differ? | Done |
+| 3 | Problems per segment | What does each one struggle with, and how do we know? | Next |
 | 4 | Target | Which segment and which problem first? | |
 | 5 | Problem statement | One paragraph everything hangs from | |
 | 6 | Journeys | Today's journey vs the new one | |
@@ -45,7 +45,7 @@ An **agent** is an AI model given a job (instructions), hands (tools it can use)
 
 These numbers are self-reported to aggregators, so read them as approximate:
 - **About $12M in annual recurring revenue** in June 2026, up from $650K in late 2025.
-- **32 enterprise customers, paying about $250K a year on average.** The largest, a US federal agency, pays close to $2M. KPMG and Deloitte are named customers.
+- **32 enterprise customers, paying about $250K a year on average.** The largest, a US federal agency, pays close to $2M. KPMG, Accenture and NTT Data are confirmed partners on Lyzr's own site. Deloitte appears only in an aggregator, so treat it as unconfirmed.
 - **A $100M Series B** in July 2026. Accenture Ventures is an investor.
 
 ([Latka](https://getlatka.com/companies/lyzr.ai), [TNW](https://thenextweb.com/news/lyzr-ai-agent-100-million-series-b), [Tracxn](https://tracxn.com/d/companies/lyzr/__3iNuwF28pWvfOkygQJziJIfs1U-wu38eTORcpSBqjqo))
@@ -96,3 +96,65 @@ The public record shows what's at stake:
 - What share of Architect apps reach production? Where do the rest stop?
 - Who uses Architect today: customers' own staff, Lyzr's ATCs, or partner consultants?
 - How are partners paid: per hour, per project, or a share of licences?
+
+---
+
+## Step 2. Users and segments
+
+### How Lyzr works with consultancies
+
+Consultancies sell clients projects such as "automate your claims process". Lyzr gives them the machinery to deliver those projects. Its page for system integrators lists four partnership models ([lyzr.ai/gsi-si](https://www.lyzr.ai/gsi-si/)):
+
+1. **Accelerate.** Lyzr engineers are embedded in the partner's delivery team, bringing 100+ tested agent blueprints. The pitch: "from quarters to weeks".
+2. **White-label.** The partner runs Lyzr under its own brand, and the client may never see Lyzr's name.
+3. **Agentic OS.** The partner builds its own product on Lyzr, such as a "Procurement OS", owns the IP, and moves "from engagement revenue to recurring product revenue".
+4. **Internal first.** The partner uses Lyzr in-house before pitching it to clients.
+
+Accenture invested so that Lyzr would bring agents to banking, insurance and financial-services clients ([Accenture](https://newsroom.accenture.com/news/2025/accenture-invests-in-lyzr-to-bring-agentic-ai-to-banking-and-insurance-companies)). KPMG builds custom agents for its clients on Lyzr. **Lyzr is the factory, the consultancy is the contractor, and Architect is one of the factory's machines.**
+
+The third model also answers a worry from Step 1, that faster delivery would threaten billable hours. Partners turn projects into products they own. For Architect, that means **work done for one client has to be reusable for the next.**
+
+### Two ways to segment
+
+We rejected the brief's "technical vs non-technical" axis. In an enterprise, what someone *does* in the project predicts their needs better than their skill level. A technical CISO and a technical developer want opposite things.
+
+**By account:**
+
+| Segment | Example | Priority |
+|---|---|---|
+| **A2. Consultancy / systems integrator** | Accenture, KPMG, NTT Data | **Lead.** It's Lyzr's existing motion, and each partner is both a customer and a channel to many enterprises |
+| A1. Regulated enterprise building directly | Banks, insurers, government | Next. This is the end client in most A2 projects anyway |
+| A3. Mid-sized digital company | D2C, SaaS | Later |
+| A4. Individual builder | Founders, freelancers | Later: a free way in, not revenue |
+
+**By role in a project:**
+
+- **Primary user: the delivery lead.** They run the agentic project end to end, like a product manager or PMO lead. They're accountable for scope, timeline, sign-off and go-live, and they coordinate the builders, the client's business owners and the client's IT.
+- **The delivery team:** consultants and developers who build, plus Lyzr's embedded engineers.
+- **Stakeholders to satisfy, not design for.** They're secondary users of a few screens: review, approval, audit.
+  - **Business owner (champion):** wants the problem solved fast, and fears looking foolish.
+  - **Economic buyer (business head + CFO):** signs off on money and resources, and fears another Lidl.
+  - **IT gatekeepers**, whose involvement starts earlier and lasts longer for agents than for SAP:
+    - **Enterprise architecture / review board:** fit with company systems.
+    - **Identity (IAM):** every agent is a non-human identity. There are 45 of those for every human, and 16% of organisations don't track the AI ones.
+    - **System and data owners:** they hold the data the agent reads and writes.
+    - **Security:** data leaks, attacks that trick an agent, and over-broad access. The May 2026 Five Eyes advisory on agentic AI names excess privilege as the foundational risk.
+    - **AI governance, model risk, compliance and legal:** RBI FREE-AI (Aug 2025) and its 2026 draft on model risk call for a model inventory, independent validation and vendor accountability.
+    - **Operations (SRE):** uptime, alerts, rollback.
+    - **FinOps:** usage costs that grow with adoption.
+  - **End users:** they adopt the app, or quietly don't.
+
+([CSA via The Hacker News](https://thehackernews.com/2026/09/iam-for-ai-agent.html), [Solytics on FREE-AI](https://www.solytics-partners.com/resources/blogs/understanding-rbi-free-ai-framework-2025-building-responsible-ethical-and-accountable-ai-governance-in-indias-bfsi-sector))
+
+### How IT involvement changes with agents
+
+- **Longer, not just larger.** With SAP, most IT work happens during the implementation. An agent keeps making decisions after launch, and its behaviour can change when the underlying model does. So IT stays involved for the app's whole life.
+- **A "paved road", not approval for everything.** Businesses build within rules IT has already decided, and IT steps in only for new situations. Ritika's experience confirms this is how mature enterprises work. It's also the defence against shadow AI: corporate data pasted into AI tools rose 485% in a year ([Cyberhaven](https://www.cyberhaven.com/resources/report/2025-ai-adoption-risk-report)).
+- **The gap.** For agents, most rules don't exist yet, so in year one every question is a new situation and goes to IT. **That first round of deliberation is a new version of the ghost pilot.**
+- **An idea to carry forward: rules starter packs.** A consultancy arrives with an industry pack, for example one for banks drafted against RBI FREE-AI. It covers the data agents may touch, human approval thresholds, logging, and identity and permission defaults. The client's IT adapts one pack instead of deliberating from zero. The partner reuses it at every client, which makes it IP. Buying rather than building is already the trend: 76% of AI use cases are now bought, up from 53% ([Menlo Ventures](https://menlovc.com/perspective/2025-the-state-of-generative-ai-in-the-enterprise/)).
+
+### Arguments in this step
+
+- **"Lead with consultancies because it's the existing segment" isn't enough on its own.** The stronger reason is that they're a customer *and* a channel. The trap is that the user (the consultant) and the gatekeepers (at the client) sit in different companies. Architect has to help one company satisfy another's IT.
+- **Designing for ourselves.** Ritika has held the delivery-lead role herself, which is insight and bias at the same time. Every assumption about delivery leads gets checked against evidence in Step 3.
+- **White-labelling has consequences for the product.** Partner branding, many clients per consultant, and strict separation of each client's data.
